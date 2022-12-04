@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FirebaseCore
+import FirebaseCore // from taken firebase web page
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+        FirebaseApp.configure() // from taken Firebase Web page
         
         return true
     }
