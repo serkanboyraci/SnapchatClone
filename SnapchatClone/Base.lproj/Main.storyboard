@@ -101,17 +101,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-iU-57Z">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select.png" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-iU-57Z">
                                 <rect key="frame" x="16" y="87" width="361" height="500"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="gCh-NA-G5T"/>
-                                    <constraint firstAttribute="width" constant="361" id="t2k-b4-cl5"/>
+                                    <constraint firstAttribute="height" constant="500" id="GzX-EF-cFi"/>
+                                    <constraint firstAttribute="width" constant="361" id="UAa-9c-ESt"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikd-rD-JD4">
-                                <rect key="frame" x="115" y="629" width="170" height="86"/>
+                                <rect key="frame" x="111" y="645" width="170" height="86"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="IFy-Qz-UAP"/>
+                                    <constraint firstAttribute="height" constant="86" id="v5K-vC-dTe"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Upload"/>
@@ -123,13 +123,17 @@
                         <viewLayoutGuide key="safeArea" id="qV2-FR-g15"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="q7d-iU-57Z" firstAttribute="trailing" secondItem="uRh-M4-m7O" secondAttribute="trailingMargin" id="CCv-fe-ASE"/>
-                            <constraint firstItem="Ikd-rD-JD4" firstAttribute="leading" secondItem="qV2-FR-g15" secondAttribute="leading" constant="115" id="Pcv-ZR-gDR"/>
-                            <constraint firstItem="q7d-iU-57Z" firstAttribute="leading" secondItem="uRh-M4-m7O" secondAttribute="leadingMargin" id="YHq-b2-ibO"/>
-                            <constraint firstItem="qV2-FR-g15" firstAttribute="bottom" secondItem="Ikd-rD-JD4" secondAttribute="bottom" constant="54" id="aRX-NQ-h4m"/>
-                            <constraint firstItem="Ikd-rD-JD4" firstAttribute="top" secondItem="q7d-iU-57Z" secondAttribute="bottom" constant="42" id="dxc-Rs-9dn"/>
-                            <constraint firstItem="q7d-iU-57Z" firstAttribute="top" secondItem="qV2-FR-g15" secondAttribute="top" constant="28" id="ixO-Vz-5KX"/>
-                            <constraint firstItem="qV2-FR-g15" firstAttribute="trailing" secondItem="Ikd-rD-JD4" secondAttribute="trailing" constant="108" id="oO7-XV-N2K"/>
+                            <constraint firstItem="q7d-iU-57Z" firstAttribute="top" secondItem="qV2-FR-g15" secondAttribute="top" constant="28" id="5zZ-MG-mrq"/>
+                            <constraint firstItem="qV2-FR-g15" firstAttribute="trailing" secondItem="q7d-iU-57Z" secondAttribute="trailing" constant="16" id="G6W-Zx-fRq"/>
+                            <constraint firstItem="q7d-iU-57Z" firstAttribute="trailing" secondItem="uRh-M4-m7O" secondAttribute="trailingMargin" id="JZe-CB-Op3"/>
+                            <constraint firstItem="Ikd-rD-JD4" firstAttribute="top" secondItem="q7d-iU-57Z" secondAttribute="bottom" constant="58" id="KDL-g1-wIq"/>
+                            <constraint firstItem="q7d-iU-57Z" firstAttribute="top" secondItem="qV2-FR-g15" secondAttribute="top" constant="28" id="M5f-p6-eTS"/>
+                            <constraint firstItem="q7d-iU-57Z" firstAttribute="leading" secondItem="qV2-FR-g15" secondAttribute="leading" constant="16" id="a6b-to-Mpc"/>
+                            <constraint firstItem="Ikd-rD-JD4" firstAttribute="top" secondItem="q7d-iU-57Z" secondAttribute="bottom" constant="58" id="gkv-Cm-nbi"/>
+                            <constraint firstItem="qV2-FR-g15" firstAttribute="bottom" secondItem="Ikd-rD-JD4" secondAttribute="bottom" constant="38" id="hlX-Ok-wXu"/>
+                            <constraint firstItem="Ikd-rD-JD4" firstAttribute="leading" secondItem="qV2-FR-g15" secondAttribute="leading" constant="111" id="js5-uq-KWP"/>
+                            <constraint firstItem="qV2-FR-g15" firstAttribute="trailing" secondItem="Ikd-rD-JD4" secondAttribute="trailing" constant="112" id="ooC-8C-PKn"/>
+                            <constraint firstItem="q7d-iU-57Z" firstAttribute="leading" secondItem="uRh-M4-m7O" secondAttribute="leadingMargin" id="vO4-fF-ffK"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Upload" image="u.circle.fill" catalog="system" id="TYk-SP-JWU"/>
@@ -265,6 +269,7 @@
     <resources>
         <image name="f.circle.fill" catalog="system" width="128" height="123"/>
         <image name="s.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="select.png" width="264" height="300"/>
         <image name="u.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
