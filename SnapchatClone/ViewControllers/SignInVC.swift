@@ -49,7 +49,7 @@ class SignInVC: UIViewController {
                 } else {
                     let firestore = Firestore.firestore() // creating
                     
-                    let userDictionary = ["email": self.emailText.text!, "username":self.usernameText.text!] as! [String : Any] //we choose what we eill take
+                    let userDictionary = ["email": self.emailText.text!, "username":self.usernameText.text!] as! [String : Any] //we choose what we w ill take
                     firestore.collection("UserInfo").addDocument(data: userDictionary) { (error) in // created collection
                         if error != nil {
                             //

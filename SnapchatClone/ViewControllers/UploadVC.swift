@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate { // to add picker add delegates  
 
     @IBOutlet var uploadImageView: UIImageView!
     override func viewDidLoad() {
