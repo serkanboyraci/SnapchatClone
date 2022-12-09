@@ -12,7 +12,7 @@ class UserSingleton {
     static let sharedUserInfo = UserSingleton()
     
     var email = ""
-    var username = ""
+    var username = "" // if you need more varible define from user and want to  carry between VC's, you must define it here.
     
     
     private init() {
