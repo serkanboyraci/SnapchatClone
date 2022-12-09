@@ -13,6 +13,7 @@
 		602DB8BC293DE30F005E9635 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602DB8BB293DE30F005E9635 /* SettingsVC.swift */; };
 		602DB8C2293DED02005E9635 /* SnapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602DB8C1293DED02005E9635 /* SnapVC.swift */; };
 		602DB8C4294130A0005E9635 /* select.png in Resources */ = {isa = PBXBuildFile; fileRef = 602DB8C3294130A0005E9635 /* select.png */; };
+		602DB8C72943D794005E9635 /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602DB8C62943D794005E9635 /* UserSingleton.swift */; };
 		6088968C293D17E800615C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088968B293D17E800615C0A /* AppDelegate.swift */; };
 		6088968E293D17E800615C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088968D293D17E800615C0A /* SceneDelegate.swift */; };
 		60889690293D17E800615C0A /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6088968F293D17E800615C0A /* SignInVC.swift */; };
@@ -30,6 +31,7 @@
 		602DB8BB293DE30F005E9635 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		602DB8C1293DED02005E9635 /* SnapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapVC.swift; sourceTree = "<group>"; };
 		602DB8C3294130A0005E9635 /* select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select.png; sourceTree = "<group>"; };
+		602DB8C62943D794005E9635 /* UserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
 		60889688293D17E800615C0A /* SnapchatClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapchatClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6088968B293D17E800615C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6088968D293D17E800615C0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		602DB8C52943D77E005E9635 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				602DB8C62943D794005E9635 /* UserSingleton.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6088967F293D17E800615C0A = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 		6088968A293D17E800615C0A /* SnapchatClone */ = {
 			isa = PBXGroup;
 			children = (
+				602DB8C52943D77E005E9635 /* Model */,
 				602DB8C0293DE3A8005E9635 /* Delegates */,
 				602DB8BF293DE35B005E9635 /* ViewControllers */,
 				60889691293D17E800615C0A /* Main.storyboard */,
@@ -242,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602DB8C72943D794005E9635 /* UserSingleton.swift in Sources */,
 				602DB8B8293DE2E3005E9635 /* FeedVC.swift in Sources */,
 				60889690293D17E800615C0A /* SignInVC.swift in Sources */,
 				6088968C293D17E800615C0A /* AppDelegate.swift in Sources */,

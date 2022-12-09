@@ -35,7 +35,8 @@ class FeedVC: UIViewController {
                 if snapshot?.isEmpty == false && snapshot != nil {
                     for document in snapshot!.documents {
                         if let username = document.get("username") as? String {
-                            
+                            UserSingleton.sharedUserInfo.email =  Auth.auth().currentUser!.email!
+                            UserSingleton.sharedUserInfo.email = username
                         }
                             
                     }
