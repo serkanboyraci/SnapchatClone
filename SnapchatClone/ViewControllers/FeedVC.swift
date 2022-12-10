@@ -36,8 +36,8 @@ class FeedVC: UIViewController {
                 if snapshot?.isEmpty == false && snapshot != nil { // snapshot must be Full
                     for document in snapshot!.documents {// you can look at InstaCloneApp Project
                         if let username = document.get("username") as? String { //After taking data to use we need Singleton sturcture.
-                            UserSingleton.sharedUserInfo.email =  Auth.auth().currentUser!.email! // Using Singleton to take data, becuse when opened Feed VC, we take data
-                            UserSingleton.sharedUserInfo.email = username // after Feed VC we can use it Upload,Settings and SnapVC.
+                            UserSingleton.sharedUserInfo.email = Auth.auth().currentUser!.email! // Using Singleton to take data, becuse when opened Feed VC, we take data
+                            UserSingleton.sharedUserInfo.username = username // after Feed VC we can use it Upload,Settings and SnapVC.
                         }
                             
                     }
