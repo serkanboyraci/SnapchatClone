@@ -21,7 +21,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let fireStoreDatabase = Firestore.firestore() // to use another func, firstly define this constant
     var snapArray = [Snap]()
     var chosenSnap : Snap?
-    var timeLeft : Int?
+ 
     
     
     override func viewDidLoad() {
@@ -58,14 +58,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                             //Delete
                                             self.fireStoreDatabase.collection("Snaps").document(documentId).delete { (error) in
                                                 // to show user a messaagekkkkk
+                                                
                                             }
+                                            
+                                        } else {
+                                            let snap = Snap(username: username, imageurlArray: imageUrlArray, date: date.dateValue(), timeDifference: 24 - difference )//to take date. use like this
+                                            self.snapArray.append(snap)
+                                            
                                         }
+                                        
                                         // timeleft --> snapVC
-                                        self.timeLeft = 24 - difference
-                                    }
+                                        //self.timeLeft = 24 - difference
+                                        
                                     
-                                    let snap = Snap(username: username, imageurlArray: imageUrlArray, date: date.dateValue())//to take date. use like this
-                                    self.snapArray.append(snap)
+                                    }
+                                   
                                 }
                             }
                         }
@@ -124,7 +131,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == "toSnapVC" {
             let destinationVC = segue.destination as! SnapVC
             destinationVC.selectedSnap = chosenSnap
-            destinationVC.selectedTime = self.timeLeft
+            
             
         }
     }
