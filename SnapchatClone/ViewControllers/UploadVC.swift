@@ -74,20 +74,18 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                 if error != nil {
                                     self.makeAlert(title: "ERROR", message: error?.localizedDescription ?? "Error")
                                 } else {
-                                    
-                                    
-                                    if snapshot?.isEmpty == false && snapshot != nil {  //  if there isn any snapshot create one // snapshot != nil //
+                                    if snapshot?.isEmpty == false && snapshot != nil {  //  if there is already one snapshot
                                         
                                         for document in snapshot!.documents {
                                             
                                             let documentId = document.documentID
                                             
-                                            if var imageUrlArray = document.get("imageUrlArray") as? [String] {
+                                            if var imageUrlArray = document.get("imageUrlArray") as? [String] { // if there is any imageUrl, we will append new Url.
                                                 imageUrlArray.append(imageUrl!)
                                                 
-                                                let additionalDictionary = ["imageUrlArray": imageUrlArray] as [String : Any]
+                                                let additionalDictionary = ["imageUrlArray": imageUrlArray] as [String : Any] // to add firebase again, createing dict.
                                                 
-                                                fireStore.collection("Snaps").document(documentId).setData(additionalDictionary, merge: true) { (error) in
+                                                fireStore.collection("Snaps").document(documentId).setData(additionalDictionary, merge: true) { (error) in // after taking photo to save firebase again
                                                     if error == nil {
                                                         self.tabBarController?.selectedIndex = 0
                                                         self.uploadImageView.image = UIImage(named: "select.png")
@@ -96,11 +94,8 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                                                 }
                                             }
                                         }
-                                        
-
-                                    } else { //  if there is already one snapshot
-                                        
-                                        
+                                    } else {//  if there isn any snapshot create one
+                                
                                         let snapDictionary = ["imageUrlArray": [imageUrl!], "snapOwner": UserSingleton.sharedUserInfo.username, "date":FieldValue.serverTimestamp()] // changing imageUrl to imageUrlArray, to add more than one url.
                                         as [String : Any]
                                         //we need url. username(takingfrom singleton) date

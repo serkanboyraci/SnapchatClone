@@ -13,7 +13,7 @@ import FirebaseCore
 
 
 
-class FeedVC: UIViewController {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
     
@@ -24,8 +24,34 @@ class FeedVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        getSnapsFromFirebase()
+        
         getUserInfo()
     }
+    
+    func getSnapsFromFirebase() {
+        fireStoreDatabase.collection("Snaps").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in // to every changeging needs update -> addsnapshot
+            if error != nil {
+                self.makeAlert(title: "Error", message: error?.localizedDescription ?? "ERROR!")
+            } else {
+                if snapshot?.isEmpty == false && snapshot != nil {
+                    for document in snapshot!.documents {
+                        
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+        
+        
+    }
+    
+    
     func getUserInfo() {
         // to take documents from UserInfo // no need to use addsnapShotListener(check everytime changings), enough to take data only one time. use getdocuments
         fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
@@ -53,5 +79,13 @@ class FeedVC: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
+        cell.feedUserNameLabel.text = "test"
+        return cell
+    }
     
 }
