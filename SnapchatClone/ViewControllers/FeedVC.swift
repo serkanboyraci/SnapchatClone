@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseCore
+import SDWebImage
 
 
 
@@ -19,6 +20,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let fireStoreDatabase = Firestore.firestore() // to use another func, firstly define this constant
     var snapArray = [Snap]()
+    var chosenSnap : Snap?
+    var timeLeft : Int?
     
     
     override func viewDidLoad() {
@@ -58,6 +61,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                             }
                                         }
                                         // timeleft --> snapVC
+                                        self.timeLeft = 24 - difference
                                     }
                                     
                                     let snap = Snap(username: username, imageurlArray: imageUrlArray, date: date.dateValue())//to take date. use like this
@@ -69,6 +73,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         
                         
                     }
+                    self.tableView.reloadData()
                 }
             }
             
@@ -111,7 +116,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.feedUserNameLabel.text = snapArray[indexPath.row].username
+        cell.feedImageView.sd_setImage(with: URL(string: snapArray[indexPath.row].imageurlArray[0]))
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSnapVC" {
+            let destinationVC = segue.destination as! SnapVC
+            destinationVC.selectedSnap = chosenSnap
+            destinationVC.selectedTime = self.timeLeft
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosenSnap = self.snapArray[indexPath.row]
+        performSegue(withIdentifier: "toSnapVC", sender: nil)
     }
     
 }
