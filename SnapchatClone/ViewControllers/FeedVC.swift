@@ -18,6 +18,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     
     let fireStoreDatabase = Firestore.firestore() // to use another func, firstly define this constant
+    var snapArray = [Snap]()
     
     
     override func viewDidLoad() {
@@ -38,7 +39,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.makeAlert(title: "Error", message: error?.localizedDescription ?? "ERROR!")
             } else {
                 if snapshot?.isEmpty == false && snapshot != nil {
-                    for document in snapshot!.documents {
+                    
+                    self.snapArray.removeAll(keepingCapacity: true) // to erase befaore for loop
+                    for document in snapshot!.documents { // to take data from firebase
+                        
+                        let documentId = document.documentID
+                        
+                        if let username = document.get("snapOwner") as? String {
+                            if let imageUrlArray = document.get("imageUrlArray") as? [String] {
+                                if let date = document.get("date") as? Timestamp {
+                                    
+                                    if let difference = Calendar.current.dateComponents([.hour], from: date.dateValue(), to: Date()).hour {
+                                        // taking current date  and saving date calculate the difference.
+                                        if difference >= 24 {
+                                            //Delete
+                                            self.fireStoreDatabase.collection("Snaps").document(documentId).delete { (error) in
+                                                // to show user a messaagekkkkk
+                                            }
+                                        }
+                                        // timeleft --> snapVC
+                                    }
+                                    
+                                    let snap = Snap(username: username, imageurlArray: imageUrlArray, date: date.dateValue())//to take date. use like this
+                                    self.snapArray.append(snap)
+                                }
+                            }
+                        }
                         
                         
                         
@@ -80,11 +106,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return snapArray.count //changed with snaparray count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        cell.feedUserNameLabel.text = "test"
+        cell.feedUserNameLabel.text = snapArray[indexPath.row].username
         return cell
     }
     
