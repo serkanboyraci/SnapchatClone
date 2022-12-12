@@ -39,7 +39,6 @@ class FeedVC: UIViewController {
                             UserSingleton.sharedUserInfo.email = Auth.auth().currentUser!.email! // Using Singleton to take data, becuse when opened Feed VC, we take data
                             UserSingleton.sharedUserInfo.username = username // after Feed VC we can use it Upload,Settings and SnapVC.
                         }
-                            
                     }
                 }
             }

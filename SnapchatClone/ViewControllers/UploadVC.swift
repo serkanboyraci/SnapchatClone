@@ -40,6 +40,8 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 
     @IBAction func uploadClicked(_ sender: Any) {
         
+        //Storage
+        
         let storage = Storage.storage()
         let storageReference = storage.reference()
         
@@ -63,32 +65,61 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                             
                             let imageUrl = url?.absoluteString
                             
+                            // FireStore
+                            
+                            
                             let fireStore = Firestore.firestore() // to reach Firestore
                             
-                            let snapDictionary = ["imageUrl": imageUrl!, "snapOwner": UserSingleton.sharedUserInfo.username, "date":FieldValue.serverTimestamp()]
-                            as [String:Any]
-                            //we need url. username(takingfrom singleton, date
-                            
-                            fireStore.collection("Snaps").addDocument(data: snapDictionary) { (error) in // to save firestore
+                            fireStore.collection("Snaps").whereField("snapOwner", isEqualTo: UserSingleton.sharedUserInfo.username).getDocuments { (snapshot, error) in
                                 if error != nil {
                                     self.makeAlert(title: "ERROR", message: error?.localizedDescription ?? "Error")
                                 } else {
-                                    self.tabBarController?.selectedIndex = 0
-                                    self.uploadImageView.image = UIImage(named: "select.png")
-                                }
-                            }
-                        }
-                    }
-                }                
+                                    
+                                    
+                                    if snapshot?.isEmpty == false && snapshot != nil {  //  if there isn any snapshot create one // snapshot != nil //
+                                        
+                                        for document in snapshot!.documents {
+                                            
+                                            let documentId = document.documentID
+                                            
+                                            if var imageUrlArray = document.get("imageUrlArray") as? [String] {
+                                                imageUrlArray.append(imageUrl!)
+                                                
+                                                let additionalDictionary = ["imageUrlArray": imageUrlArray] as [String : Any]
+                                                
+                                                fireStore.collection("Snaps").document(documentId).setData(additionalDictionary, merge: true) { (error) in
+                                                    if error == nil {
+                                                        self.tabBarController?.selectedIndex = 0
+                                                        self.uploadImageView.image = UIImage(named: "select.png")
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+
+                                    } else { //  if there is already one snapshot
+                                        
+                                        
+                                        let snapDictionary = ["imageUrlArray": [imageUrl!], "snapOwner": UserSingleton.sharedUserInfo.username, "date":FieldValue.serverTimestamp()] // changing imageUrl to imageUrlArray, to add more than one url.
+                                        as [String : Any]
+                                        //we need url. username(takingfrom singleton) date
+                                        
+                                        fireStore.collection("Snaps").addDocument(data: snapDictionary) { (error) in // to save firestore
+                                            if error != nil {
+                                                self.makeAlert(title: "ERROR", message: error?.localizedDescription ?? "Error")
+                                            } else {
+                                                self.tabBarController?.selectedIndex = 0
+                                                self.uploadImageView.image = UIImage(named: "select.png")
+                                            }
+                                        }
+                                  }}}}}}}}}
+                
+                func makeAlert(title: String, message: String) {
+                    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let okButton = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true)
+                }
+                
             }
-        }
-     }
-    
-    func makeAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(okButton)
-        self.present(alert, animated: true)
-    }
-    
-}
